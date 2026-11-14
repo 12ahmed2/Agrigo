@@ -81,7 +81,7 @@ function formatEGP(value) {
 }
 
 // ============================================================================
-// 2. CROP VISUAL ILLUSTRATIONS FOR THE 7 EXISTING SOLDOC CROPS
+// 2. CROP VISUAL ILLUSTRATIONS FOR THE 7 EXISTING AGRI-GO CROPS
 // ============================================================================
 function CropIllustration({ cropId }) {
   switch (cropId) {
@@ -346,7 +346,7 @@ const BASELINE_EGYPT_CLIMATE_TEMPLATE = {
   },
 };
 
-const SOLDOC_FARMS = [];
+const AGRI-GO_FARMS = [];
 
 // ============================================================================
 // 5-B. DYNAMIC EGYPT GEO-RESOLVER FOR ANY CUSTOM GOOGLE MAPS COORDINATE (LAT/LON)
@@ -452,7 +452,7 @@ function resolveEgyptianLocationProfile(lat, lon, customPlaceNameAr = '', custom
 }
 
 // ============================================================================
-// 6. THE 7 EXISTING SOLDOC CROPS: SCIENTIFIC PARAMETERS, GUIDES & ECONOMICS
+// 6. THE 7 EXISTING AGRI-GO CROPS: SCIENTIFIC PARAMETERS, GUIDES & ECONOMICS
 // ============================================================================
 const COST_ITEM_METADATA = [
   { key: 'landPrep', labelAr: '1. تجهيز الأرض والحرث والتسوية', chartGroup: 'OTHER' },
@@ -467,7 +467,7 @@ const COST_ITEM_METADATA = [
   { key: 'otherExpenses', labelAr: '10. مصاريف إضافية وإيجار الأرض', chartGroup: 'OTHER' },
 ];
 
-const SOLDOC_CROPS = {
+const AGRI-GO_CROPS = {
   EG_WHEAT: {
     cropId: 'EG_WHEAT',
     nameAr: 'القمح',
@@ -1129,7 +1129,7 @@ function runTop5CropRecommendationEngine({
   const eligibleCandidates = [];
   const excludedCrops = [];
 
-  Object.values(SOLDOC_CROPS).forEach((crop) => {
+  Object.values(AGRI-GO_CROPS).forEach((crop) => {
     const rules = crop._backendRules;
     const gaez = crop.gaezPotentialByGov[farm.governorateCode] || crop.gaezPotentialByGov.QLY;
     const prodEst = estimateCropProductionInBackend({
@@ -1578,8 +1578,8 @@ function calculateSmartFarmEconomics({
 }
 
 // ============================================================================
-// 9-B. THREE.JS 3D FARM SIMULATION ENGINE (INTEGRATED FROM soldoc_3d_farm.tsx)
-//      WITH FULL TWO-WAY SYNC TO SOLDOC CROPS, IRRIGATION & NASA POWER DATA
+// 9-B. THREE.JS 3D FARM SIMULATION ENGINE (INTEGRATED FROM AGRI-GO_3d_farm.tsx)
+//      WITH FULL TWO-WAY SYNC TO AGRI-GO CROPS, IRRIGATION & NASA POWER DATA
 // ============================================================================
 const CORN_10_STAGES = {
   1: { code: 'VE', nameAr: '١. الإنبات وظهور البادرة', height: 0.08, leaves: 1, kc: 0.15, ky: 0.4, hasTassel: false, hasSilk: false, earScale: 0 },
@@ -1597,7 +1597,7 @@ const CORN_10_STAGES = {
 const CROP_CATALOG_3D = {
   corn: {
     id: 'corn',
-    soldocCropId: 'EG_MAIZE',
+    AGRI-GOCropId: 'EG_MAIZE',
     nameAr: 'ذرة شامية (شامي)',
     nameEn: 'Maize / Corn',
     defaultRowSpacing: 0.75,
@@ -1609,7 +1609,7 @@ const CROP_CATALOG_3D = {
   },
   wheat: {
     id: 'wheat',
-    soldocCropId: 'EG_WHEAT',
+    AGRI-GOCropId: 'EG_WHEAT',
     nameAr: 'قمح مصري',
     nameEn: 'Egyptian Wheat',
     defaultRowSpacing: 0.32,
@@ -1621,7 +1621,7 @@ const CROP_CATALOG_3D = {
   },
   rice: {
     id: 'rice',
-    soldocCropId: 'EG_RICE',
+    AGRI-GOCropId: 'EG_RICE',
     nameAr: 'أرز دلتا النيل',
     nameEn: 'Paddy Rice',
     defaultRowSpacing: 0.30,
@@ -1633,7 +1633,7 @@ const CROP_CATALOG_3D = {
   },
   tomato: {
     id: 'tomato',
-    soldocCropId: 'EG_TOMATO',
+    AGRI-GOCropId: 'EG_TOMATO',
     nameAr: 'طماطم حقلية',
     nameEn: 'Field Tomato',
     defaultRowSpacing: 0.90,
@@ -1645,7 +1645,7 @@ const CROP_CATALOG_3D = {
   },
   potato: {
     id: 'potato',
-    soldocCropId: 'EG_POTATO',
+    AGRI-GOCropId: 'EG_POTATO',
     nameAr: 'بطاطس',
     nameEn: 'Potato',
     defaultRowSpacing: 0.75,
@@ -1657,7 +1657,7 @@ const CROP_CATALOG_3D = {
   },
   cotton: {
     id: 'cotton',
-    soldocCropId: 'EG_COTTON',
+    AGRI-GOCropId: 'EG_COTTON',
     nameAr: 'قطن مصري طويل التيلة',
     nameEn: 'Egyptian Cotton',
     defaultRowSpacing: 0.80,
@@ -1669,7 +1669,7 @@ const CROP_CATALOG_3D = {
   },
   sugar_beet: {
     id: 'sugar_beet',
-    soldocCropId: 'EG_SUGAR_BEET',
+    AGRI-GOCropId: 'EG_SUGAR_BEET',
     nameAr: 'بنجر السكر',
     nameEn: 'Sugar Beet',
     defaultRowSpacing: 0.55,
@@ -1681,7 +1681,7 @@ const CROP_CATALOG_3D = {
   },
 };
 
-const SOLDOC_TO_3D_CROP_MAP = {
+const AGRI-GO_TO_3D_CROP_MAP = {
   EG_MAIZE: 'corn',
   EG_WHEAT: 'wheat',
   EG_RICE: 'rice',
@@ -1691,7 +1691,7 @@ const SOLDOC_TO_3D_CROP_MAP = {
   EG_SUGAR_BEET: 'sugar_beet',
 };
 
-const CROP_3D_TO_SOLDOC_MAP = {
+const CROP_3D_TO_AGRI-GO_MAP = {
   corn: 'EG_MAIZE',
   wheat: 'EG_WHEAT',
   rice: 'EG_RICE',
@@ -1701,13 +1701,13 @@ const CROP_3D_TO_SOLDOC_MAP = {
   sugar_beet: 'EG_SUGAR_BEET',
 };
 
-const SOLDOC_TO_3D_IRRIGATION_MAP = {
+const AGRI-GO_TO_3D_IRRIGATION_MAP = {
   TRADITIONAL_SURFACE: 'surface',
   DRIP: 'drip',
   SPRINKLER: 'sprinkler',
 };
 
-const IRRIGATION_3D_TO_SOLDOC_MAP = {
+const IRRIGATION_3D_TO_AGRI-GO_MAP = {
   surface: 'TRADITIONAL_SURFACE',
   drip: 'DRIP',
   sprinkler: 'SPRINKLER',
@@ -2401,7 +2401,7 @@ const INITIAL_3D_FARM_STATE = {
   environment: PHENOMENA_PRESETS.normal,
 };
 
-function Soldoc3DFarmSimulation({
+function AGRI-GO3DFarmSimulation({
   selectedFarm,
   selectedCrop,
   selectedCropId,
@@ -2410,8 +2410,8 @@ function Soldoc3DFarmSimulation({
   areaInfo,
   expectedProduction,
   economics,
-  onSyncCropToSoldoc,
-  onSyncIrrigationToSoldoc,
+  onSyncCropToAGRI-GO,
+  onSyncIrrigationToAGRI-GO,
   onOpenEconomicsPage,
 }) {
   const mountRef = useRef(null);
@@ -2419,7 +2419,7 @@ function Soldoc3DFarmSimulation({
 
   const [farmState, setFarmState] = useState(() => {
     try {
-      const saved = localStorage.getItem('soldoc_3d_farm_v2');
+      const saved = localStorage.getItem('AGRI-GO_3d_farm_v2');
       if (saved) {
         const parsed = JSON.parse(saved);
         return {
@@ -2478,11 +2478,11 @@ function Soldoc3DFarmSimulation({
     [farmState.zones, selectedZoneId, cropToPlantAnywhere, freePlantStage]
   );
 
-  // Sync incoming SOLDOC active crop, irrigation method, and live NASA POWER weather into 3D simulation
+  // Sync incoming AGRI-GO active crop, irrigation method, and live NASA POWER weather into 3D simulation
   useEffect(() => {
-    const mapped3DCrop = SOLDOC_TO_3D_CROP_MAP[selectedCropId] || 'wheat';
+    const mapped3DCrop = AGRI-GO_TO_3D_CROP_MAP[selectedCropId] || 'wheat';
     setCropToPlantAnywhere(mapped3DCrop);
-    const mapped3DIrr = SOLDOC_TO_3D_IRRIGATION_MAP[irrigationSystemType] || 'surface';
+    const mapped3DIrr = AGRI-GO_TO_3D_IRRIGATION_MAP[irrigationSystemType] || 'surface';
     const cropSpec = CROP_CATALOG_3D[mapped3DCrop] || CROP_CATALOG_3D.wheat;
 
     setFarmState((prev) => {
@@ -2545,7 +2545,7 @@ function Soldoc3DFarmSimulation({
 
   const handleSaveFarm = () => {
     try {
-      localStorage.setItem('soldoc_3d_farm_v2', JSON.stringify(farmState));
+      localStorage.setItem('AGRI-GO_3d_farm_v2', JSON.stringify(farmState));
     } catch (err) {
       // ignore storage error
     }
@@ -2555,7 +2555,7 @@ function Soldoc3DFarmSimulation({
   const handleResetFarm = () => {
     updateFarmWithHistory(INITIAL_3D_FARM_STATE);
     try {
-      localStorage.removeItem('soldoc_3d_farm_v2');
+      localStorage.removeItem('AGRI-GO_3d_farm_v2');
     } catch (err) {
       // ignore
     }
@@ -2691,15 +2691,15 @@ function Soldoc3DFarmSimulation({
         customPlants: [...(prev.customPlants || []), ...newPlants].slice(-8000),
       }));
 
-      if (CROP_3D_TO_SOLDOC_MAP[cropId]) {
-        onSyncCropToSoldoc(CROP_3D_TO_SOLDOC_MAP[cropId]);
+      if (CROP_3D_TO_AGRI-GO_MAP[cropId]) {
+        onSyncCropToAGRI-GO(CROP_3D_TO_AGRI-GO_MAP[cropId]);
       }
 
       setNotification(
         `🌱 تمت زراعة ${newPlants.length} نبات (${cropSpec.nameAr} - مرحلة ${stage}/10) في الإحداثيات (${clampedX.toFixed(1)}م، ${clampedZ.toFixed(1)}م)`
       );
     },
-    [cropToPlantAnywhere, freePlantStage, plantBrushPattern, updateFarmWithHistory, onSyncCropToSoldoc]
+    [cropToPlantAnywhere, freePlantStage, plantBrushPattern, updateFarmWithHistory, onSyncCropToAGRI-GO]
   );
 
   // Helper to remove a specific plant or erase plants within radius R around (wx, wz)
@@ -2783,8 +2783,8 @@ function Soldoc3DFarmSimulation({
         irrigated: true,
       })),
     }));
-    if (CROP_3D_TO_SOLDOC_MAP[cropId3D]) {
-      onSyncCropToSoldoc(CROP_3D_TO_SOLDOC_MAP[cropId3D]);
+    if (CROP_3D_TO_AGRI-GO_MAP[cropId3D]) {
+      onSyncCropToAGRI-GO(CROP_3D_TO_AGRI-GO_MAP[cropId3D]);
     }
     setNotification(`تم تعميم وزراعة محصول (${cropSpec.nameAr}) في جميع أنحاء المزرعة بالكامل ✓`);
   };
@@ -3316,8 +3316,8 @@ function Soldoc3DFarmSimulation({
             );
           }
 
-          if (CROP_3D_TO_SOLDOC_MAP[chosenCropId]) {
-            onSyncCropToSoldoc(CROP_3D_TO_SOLDOC_MAP[chosenCropId]);
+          if (CROP_3D_TO_AGRI-GO_MAP[chosenCropId]) {
+            onSyncCropToAGRI-GO(CROP_3D_TO_AGRI-GO_MAP[chosenCropId]);
           }
         } else if (tool === 'draw_canal') {
           const draft = sr.canalDraftLatest;
@@ -3336,7 +3336,7 @@ function Soldoc3DFarmSimulation({
               irrigationMethod: 'surface',
               canals: [...prev.canals, newCanal],
             }));
-            onSyncIrrigationToSoldoc('TRADITIONAL_SURFACE');
+            onSyncIrrigationToAGRI-GO('TRADITIONAL_SURFACE');
             setCanalDraftStart(null);
             setActiveTool('inspect');
             setNotification('تم حفر وإضافة مسقى الري السطحي الجديد ومزامنته مع سولدوك ✓');
@@ -3350,7 +3350,7 @@ function Soldoc3DFarmSimulation({
               { id: `sp-${Date.now()}`, x: Math.round(clampedX), z: Math.round(clampedZ), radius: 16 },
             ],
           }));
-          onSyncIrrigationToSoldoc('SPRINKLER');
+          onSyncIrrigationToAGRI-GO('SPRINKLER');
           setActiveTool('inspect');
           setNotification('تمت إضافة رشاش مياه دوار جديد ومزامنته مع حسابات سولدوك ✓');
         } else if (tool === 'add_tree') {
@@ -3663,8 +3663,8 @@ function Soldoc3DFarmSimulation({
     };
   }, [
     updateFarmWithHistory,
-    onSyncIrrigationToSoldoc,
-    onSyncCropToSoldoc,
+    onSyncIrrigationToAGRI-GO,
+    onSyncCropToAGRI-GO,
     addFreePlantsAtPoint,
     removePlantsAtPoint,
   ]);
@@ -4095,7 +4095,7 @@ function Soldoc3DFarmSimulation({
 
   return (
     <div dir="rtl" className="space-y-4">
-      {/* Top Integrated SOLDOC <-> 3D Simulation Bridge Bar */}
+      {/* Top Integrated AGRI-GO <-> 3D Simulation Bridge Bar */}
       <div className="rounded-[24px] bg-white/75 backdrop-blur-xl border border-white/90 shadow-md px-5 py-3.5 flex flex-wrap items-center justify-between gap-3 text-[#1b4332]">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-2xl bg-[#2d6a4f] text-white flex items-center justify-center shadow">
@@ -4103,7 +4103,7 @@ function Soldoc3DFarmSimulation({
           </div>
           <div>
             <div className="text-xs font-extrabold text-[#40916c]">
-              محاكاة سولدوك ثلاثية الأبعاد المتصلة بالمزرعة والاقتصاد (SOLDOC 3D WebGL Farm Twin)
+              محاكاة سولدوك ثلاثية الأبعاد المتصلة بالمزرعة والاقتصاد (AGRI-GO 3D WebGL Farm Twin)
             </div>
             <div className="text-sm sm:text-base font-black text-[#1b4332]">
               {selectedFarm.farmNameAr} ({areaInfo.feddans} فدان) • المحصول النشط: {selectedCrop.nameAr} • صافي الربح المتوقع: {formatEGP(economics.profit.totalNetProfit)}
@@ -4314,7 +4314,7 @@ function Soldoc3DFarmSimulation({
                 <div className="flex items-center gap-2">
                   <span className="inline-block h-3 w-3 rounded-full bg-emerald-400 animate-pulse" />
                   <span className="text-sm font-extrabold tracking-wide text-emerald-400">
-                    SOLDOC 3D FARM ({selectedFarm.governorateAr})
+                    AGRI-GO 3D FARM ({selectedFarm.governorateAr})
                   </span>
                 </div>
                 <span
@@ -4669,8 +4669,8 @@ function Soldoc3DFarmSimulation({
                                     ),
                                   }));
                                 }
-                                if (CROP_3D_TO_SOLDOC_MAP[crop.id]) {
-                                  onSyncCropToSoldoc(CROP_3D_TO_SOLDOC_MAP[crop.id]);
+                                if (CROP_3D_TO_AGRI-GO_MAP[crop.id]) {
+                                  onSyncCropToAGRI-GO(CROP_3D_TO_AGRI-GO_MAP[crop.id]);
                                   setNotification(
                                     `تم اختيار (${crop.nameAr}) — اضغط على الأرض لإضافة نباتات أو تعديل الأحواض ✓`
                                   );
@@ -4795,8 +4795,8 @@ function Soldoc3DFarmSimulation({
                                   ...prev,
                                   irrigationMethod: method,
                                 }));
-                                if (IRRIGATION_3D_TO_SOLDOC_MAP[method]) {
-                                  onSyncIrrigationToSoldoc(IRRIGATION_3D_TO_SOLDOC_MAP[method]);
+                                if (IRRIGATION_3D_TO_AGRI-GO_MAP[method]) {
+                                  onSyncIrrigationToAGRI-GO(IRRIGATION_3D_TO_AGRI-GO_MAP[method]);
                                 }
                               }}
                               className={`rounded-lg py-2 px-2 font-bold transition ${
@@ -5182,9 +5182,9 @@ function getSatelliteGridTiles(lat, lon, zoom = 15) {
 }
 
 // ============================================================================
-// BRAND LOGOS: SOLDOC LEAF EMBLEM & POWERED BY NASA INSIGNIA
+// BRAND LOGOS: AGRI-GO LEAF EMBLEM & POWERED BY NASA INSIGNIA
 // ============================================================================
-function SoldocLeafEmblem({ size = 'md' }) {
+function AGRI-GOLeafEmblem({ size = 'md' }) {
   const dims =
     size === 'lg'
       ? 'w-14 h-14 rounded-2xl'
@@ -5259,7 +5259,7 @@ function NasaInsigniaBadge() {
 }
 
 // ============================================================================
-// 10. MAIN SOLDOC APPLICATION – REFERENCE GLASSMORPHISM DASHBOARD + ALL MODULES
+// 10. MAIN AGRI-GO APPLICATION – REFERENCE GLASSMORPHISM DASHBOARD + ALL MODULES
 // ============================================================================
 export default function App() {
   // Sidebar navigation items matching the reference image:
@@ -5349,14 +5349,14 @@ export default function App() {
   // Brief "جاري تحليل أرضك..." transition state when changing plan or farm
   const [isAnalyzingFarm, setIsAnalyzingFarm] = useState(false);
 
-  // Expandable Card Drawers ("ليه SOLDOC رشح المحصول ده؟" & Technical Details)
+  // Expandable Card Drawers ("ليه AGRI-GO رشح المحصول ده؟" & Technical Details)
   const [openWhyCardMap, setOpenWhyCardMap] = useState({ EG_WHEAT: true, EG_SUGAR_BEET: true });
   const [openTechCardMap, setOpenTechCardMap] = useState({});
 
   // Selected Crop for Continuing Workflow (Guide, 3D Irrigation, Monitoring, Economics)
   const [selectedCropId, setSelectedCropId] = useState('EG_WHEAT');
   const selectedCrop = useMemo(
-    () => SOLDOC_CROPS[selectedCropId] || SOLDOC_CROPS.EG_WHEAT,
+    () => AGRI-GO_CROPS[selectedCropId] || AGRI-GO_CROPS.EG_WHEAT,
     [selectedCropId]
   );
 
@@ -5733,7 +5733,7 @@ export default function App() {
 
   // All 7 Crops Comparison for Economics Section E
   const sevenCropsComparison = useMemo(() => {
-    return Object.values(SOLDOC_CROPS)
+    return Object.values(AGRI-GO_CROPS)
       .map((crop) => {
         const prodEst = estimateCropProductionInBackend({
           farm: selectedFarm,
@@ -5918,7 +5918,7 @@ export default function App() {
                 </div>
                 <div>
                   <span className="text-[11px] font-extrabold uppercase tracking-wider text-emerald-200 block">
-                    إضافة مزرعتك الخاصة وتحديد موقعها الحر على خرائط جوجل (SOLDOC Custom Farm Builder)
+                    إضافة مزرعتك الخاصة وتحديد موقعها الحر على خرائط جوجل (AGRI-GO Custom Farm Builder)
                   </span>
                   <h2 className="text-lg sm:text-xl font-black">
                     ١. اكتب اسم ومساحة مزرعتك وحدد موقعها بحرية ⬅ ٢. شاهد بيانات موقعك ⬅ ٣. اختر خطتك واستلم الـ TOP 5
@@ -6562,17 +6562,17 @@ export default function App() {
             mobileMenuOpen ? 'fixed inset-y-3 left-3 z-50 flex w-64' : 'hidden lg:flex lg:w-60 xl:w-64'
           } flex-col justify-between rounded-[28px] bg-white/65 backdrop-blur-2xl border border-white/80 shadow-[0_12px_40px_rgba(20,60,35,0.14)] p-4 shrink-0 transition-all`}
         >
-          {/* Top Logo: SOLDOC + Virtual Farm */}
+          {/* Top Logo: AGRI-GO + Virtual Farm */}
           <div className="space-y-6">
             <div className="flex items-center justify-between px-1 pt-1">
               <div
                 onClick={() => setActiveNav('HOME')}
                 className="flex items-center gap-3 cursor-pointer"
               >
-                <SoldocLeafEmblem size="md" />
+                <AGRI-GOLeafEmblem size="md" />
                 <div className="leading-tight">
                   <div className="text-xl font-black tracking-tight text-[#1b4332]">
-                    SOLDOC
+                    AGRI-GO
                   </div>
                   <div className="text-xs font-semibold text-[#40916c]">
                     Virtual Farm
@@ -6785,13 +6785,13 @@ export default function App() {
               {/* C. WELCOME CARD */}
               <section className="rounded-[28px] bg-white/65 backdrop-blur-xl border border-white/80 shadow-[0_10px_35px_rgba(20,60,35,0.11)] px-6 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <SoldocLeafEmblem size="lg" />
+                  <AGRI-GOLeafEmblem size="lg" />
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-[#1b4332]">
                       Welcome Back, Farmer!
                     </h1>
                     <p className="text-sm sm:text-base font-medium text-[#3b624c] mt-0.5">
-                      Let&apos;s grow smarter with SOLDOC.
+                      Let&apos;s grow smarter with AGRI-GO.
                     </p>
                   </div>
                 </div>
@@ -7163,7 +7163,7 @@ export default function App() {
                       className="w-full h-32 overflow-visible"
                     >
                       <defs>
-                        <linearGradient id="soldocGreenGrad" x1="0" y1="0" x2="0" y2="1">
+                        <linearGradient id="AGRI-GOGreenGrad" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="0%" stopColor="#40916c" stopOpacity="0.42" />
                           <stop offset="100%" stopColor="#d8f3dc" stopOpacity="0.05" />
                         </linearGradient>
@@ -7184,7 +7184,7 @@ export default function App() {
 
                       {/* Smooth Area Fill */}
                       {chartGeometry.areaPath && (
-                        <path d={chartGeometry.areaPath} fill="url(#soldocGreenGrad)" />
+                        <path d={chartGeometry.areaPath} fill="url(#AGRI-GOGreenGrad)" />
                       )}
 
                       {/* Trend Line */}
@@ -7705,7 +7705,7 @@ export default function App() {
                             </div>
                           </div>
 
-                          {/* Expandable Explanation Drawer: "ليه SOLDOC رشح المحصول ده؟" */}
+                          {/* Expandable Explanation Drawer: "ليه AGRI-GO رشح المحصول ده؟" */}
                           <div className="mt-3 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
                             <div className="flex flex-wrap items-center gap-2">
                               <button
@@ -7715,7 +7715,7 @@ export default function App() {
                               >
                                 {isWhyOpen
                                   ? 'إخفاء أسباب الترشيح ▲'
-                                  : 'ليه SOLDOC رشح المحصول ده لموقعك؟ ▼'}
+                                  : 'ليه AGRI-GO رشح المحصول ده لموقعك؟ ▼'}
                               </button>
                               <button
                                 type="button"
@@ -7894,7 +7894,7 @@ export default function App() {
               VIEW 4: SIMULATION (FULL THREE.JS 3D FARM SIMULATION + FAO-33/56)
              ================================================================= */}
           {activeNav === 'SIMULATION' && (
-            <Soldoc3DFarmSimulation
+            <AGRI-GO3DFarmSimulation
               selectedFarm={selectedFarm}
               selectedCrop={selectedCrop}
               selectedCropId={selectedCropId}
@@ -7903,12 +7903,12 @@ export default function App() {
               areaInfo={areaInfo}
               expectedProduction={expectedProduction}
               economics={economics}
-              onSyncCropToSoldoc={(newSoldocCropId) => {
-                setSelectedCropId(newSoldocCropId);
+              onSyncCropToAGRI-GO={(newAGRI-GOCropId) => {
+                setSelectedCropId(newAGRI-GOCropId);
                 setManualSellingPrice('');
               }}
-              onSyncIrrigationToSoldoc={(newSoldocIrrigationType) => {
-                setIrrigationSystemType(newSoldocIrrigationType);
+              onSyncIrrigationToAGRI-GO={(newAGRI-GOIrrigationType) => {
+                setIrrigationSystemType(newAGRI-GOIrrigationType);
               }}
               onOpenEconomicsPage={() => setActiveNav('REPORTS')}
             />
@@ -7954,7 +7954,7 @@ export default function App() {
 
                 {/* 7 Crop Selector Cards */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5">
-                  {Object.values(SOLDOC_CROPS).map((crop) => (
+                  {Object.values(AGRI-GO_CROPS).map((crop) => (
                     <button
                       key={crop.cropId}
                       type="button"
